@@ -49,17 +49,13 @@ function showToast(msg){el.toast.textContent=msg;el.toast.classList.add('show');
 function todayRecord(){const t=dateKey();return records.find(r=>r.use_date===t)||null}
 function rotationIndexFromRecord(r){return ROTATIONS.findIndex(x=>x[0]===r.tv&&x[1]===r.seat1&&x[2]===r.seat2)}
 function pendingOrder(){const today=todayRecord();if(today)return[today.tv,today.seat1,today.seat2];if(!records.length)return ROTATIONS[0];const latest=records[0];const idx=rotationIndexFromRecord(latest);return ROTATIONS[((idx<0?0:idx)+1)%ROTATIONS.length]}
-function render(){
- el.today.textContent=dateText(new Date());const [tv,s1,s2]=pendingOrder();el.tv.textContent=tv;el.s1.textContent=s1;el.s2.textContent=s2;
- const locked=!!todayRecord();el.confirm.disabled=!ready||locked||saving;el.confirm.textContent=!ready?'연결 확인 중...':locked?'오늘 순서 확정됨 ✓':saving?'저장 중...':'오늘 순서 확정하기';
- el.history.innerHTML='';if(!records.length){el.history.innerHTML='<div class="empty">아직 기록이 없어요. 오늘 순서를 확정하면 모든 기기에 함께 저장됩니다.</div>';return}
- records.forEach(item=>{const div=document.createElement('div');div.className='history-item';const d=document.createElement('div');d.className='history-date';d.textContent=shortDate(item.use_date);const t=document.createElement('div');t.className='history-text';t.textContent=`📺 TV: ${item.tv} · 🛏️ 자리 1순위: ${item.seat1} · 자리 2순위: ${item.seat2}`;div.append(d,t);el.history.appendChild(div)});
-}
+function render(){el.today.textContent=dateText(new Date());const [tv,s1,s2]=pendingOrder();el.tv.textContent=tv;el.s1.textContent=s1;el.s2.textContent=s2;const locked=!!todayRecord();el.confirm.disabled=!ready||locked||saving;el.confirm.textContent=!ready?'연결 확인 중...':locked?'오늘 순서 확정됨 ✓':saving?'저장 중...':'오늘 순서 확정하기';el.history.innerHTML='';if(!records.length){el.history.innerHTML='<div class="empty">아직 기록이 없어요. 오늘 순서를 확정하면 모든 기기에 함께 저장됩니다.</div>';return}records.forEach(item=>{const div=document.createElement('div');div.className='history-item';const d=document.createElement('div');d.className='history-date';d.textContent=shortDate(item.use_date);const t=document.createElement('div');t.className='history-text';t.textContent=`📺 TV: ${item.tv} · 🛏️ 자리 1순위: ${item.seat1} · 자리 2순위: ${item.seat2}`;div.append(d,t);el.history.appendChild(div)})}
 async function loadRecords(){try{const res=await fetch(API+'?select=use_date,tv,seat1,seat2,confirmed_at&order=use_date.desc',{headers:headers({'Accept':'application/json'}),cache:'no-store'});if(!res.ok)throw new Error('load '+res.status);records=await res.json();ready=true;render()}catch(e){ready=false;el.confirm.disabled=true;el.confirm.textContent='연결 오류';el.history.innerHTML='<div class="empty">온라인 기록을 불러오지 못했어요. 잠시 후 다시 열어주세요.</div>'}}
 el.confirm.addEventListener('click',async function(){if(!ready||saving)return;if(todayRecord()){showToast('오늘 순서는 이미 확정됐어요');render();return}saving=true;render();const [tv,seat1,seat2]=pendingOrder();const body={use_date:dateKey(),tv,seat1,seat2};try{const res=await fetch(API,{method:'POST',headers:headers({'Prefer':'return=representation'}),body:JSON.stringify(body)});if(res.ok){showToast('오늘 순서를 확정했어요')}else if(res.status===409){showToast('다른 기기에서 이미 확정됐어요')}else{throw new Error('save '+res.status)}await loadRecords()}catch(e){showToast('저장에 실패했어요');await loadRecords()}finally{saving=false;render()}});
 el.share.addEventListener('click',async function(){const [tv,s1,s2]=pendingOrder();const text=`${dateText(new Date())}\n📺 TV: ${tv}\n🛏️ 자리 1순위: ${s1}\n🛏️ 자리 2순위: ${s2}`;try{if(navigator.share){await navigator.share({title:'오늘의 잠자리 순서',text})}else if(navigator.clipboard){await navigator.clipboard.writeText(text);showToast('공유 내용을 복사했어요')}}catch(e){}});
 render();loadRecords();setInterval(loadRecords,30000);
-if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.unregister()))).catch(()=>{});}
+if('caches' in window){caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).catch(()=>{});}
 })();
 </script>
 </body>
