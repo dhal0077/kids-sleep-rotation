@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="icon.svg">
 <title>금토 잠자리 순서</title>
 <style>
-:root{--bg:#f4f6fb;--card:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--ok:#166534;--okbg:#dcfce7}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink)}.wrap{max-width:560px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom))}.hero{background:linear-gradient(145deg,#111827,#374151);color:#fff;border-radius:26px;padding:22px;box-shadow:0 14px 34px rgba(17,24,39,.16);margin-bottom:14px}.eyebrow{font-size:13px;opacity:.72;margin-bottom:6px}h1{font-size:28px;line-height:1.15;margin:0 0 8px}.date{font-size:15px;opacity:.9}.grid{display:grid;gap:10px;margin-top:14px}.role{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}.role .label{font-size:14px;opacity:.78}.role .name{font-weight:800;font-size:21px}.primary{width:100%;border:0;border-radius:18px;padding:17px 18px;margin-top:14px;background:#fff;color:#111827;font-size:17px;font-weight:800;box-shadow:0 6px 20px rgba(0,0,0,.12)}.primary:active:not(:disabled){transform:scale(.99)}.primary:disabled{background:var(--okbg);color:var(--ok);box-shadow:none}.card{background:var(--card);border-radius:22px;padding:18px;margin-top:14px;box-shadow:0 8px 24px rgba(17,24,39,.06)}.card h2{font-size:18px;margin:0 0 12px}button.secondary{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 12px;font-weight:700;font-size:15px}.history{display:grid;gap:9px}.history-item{border:1px solid var(--line);border-radius:16px;padding:13px 14px}.history-date{font-weight:800;font-size:14px;margin-bottom:6px}.history-text{font-size:14px;color:#374151;line-height:1.55}.empty{color:var(--muted);font-size:14px;padding:8px 0}.tiny{font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px}.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:#111827;color:white;padding:11px 15px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+:root{--bg:#f4f6fb;--card:#fff;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--ok:#166534;--okbg:#dcfce7}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;background:var(--bg);color:var(--ink)}.wrap{max-width:560px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(32px + env(safe-area-inset-bottom))}.hero{background:linear-gradient(145deg,#111827,#374151);color:#fff;border-radius:26px;padding:22px;box-shadow:0 14px 34px rgba(17,24,39,.16);margin-bottom:14px}.eyebrow{font-size:13px;opacity:.72;margin-bottom:6px}h1{font-size:28px;line-height:1.15;margin:0 0 8px}.date{font-size:15px;opacity:.9}.grid{display:grid;gap:10px;margin-top:14px}.role{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between}.role .label{font-size:14px;opacity:.78}.role .name{font-weight:800;font-size:21px}.primary{width:100%;border:0;border-radius:18px;padding:17px 18px;margin-top:14px;background:#fff;color:#111827;font-size:17px;font-weight:800;box-shadow:0 6px 20px rgba(0,0,0,.12)}.primary:active:not(:disabled){transform:scale(.99)}.primary:disabled{background:var(--okbg);color:var(--ok);box-shadow:none}.card{background:var(--card);border-radius:22px;padding:18px;margin-top:14px;box-shadow:0 8px 24px rgba(17,24,39,.06)}.card h2{font-size:18px;margin:0 0 12px}button.secondary{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 12px;font-weight:700;font-size:15px}.history{display:grid;gap:9px}.history-item{border:1px solid var(--line);border-radius:16px;padding:13px 14px}.history-date{font-weight:800;font-size:14px;margin-bottom:6px}.history-text{font-size:14px;color:#374151;line-height:1.55}.empty,.status{color:var(--muted);font-size:14px;padding:8px 0}.tiny{font-size:12px;color:var(--muted);line-height:1.5;margin-top:10px}.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:#111827;color:white;padding:11px 15px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
 </head>
 <body>
@@ -25,51 +25,41 @@
 <div class="role"><span class="label">🛏️ 자리 1순위</span><span class="name" id="seat1Name">세하</span></div>
 <div class="role"><span class="label">🛏️ 자리 2순위</span><span class="name" id="seat2Name">건우</span></div>
 </div>
-<button class="primary" id="confirmBtn" type="button">오늘 순서 확정하기</button>
+<button class="primary" id="confirmBtn" type="button" disabled>불러오는 중...</button>
 </section>
-<section class="card"><h2>공유</h2><button class="secondary" id="shareBtn" type="button">📤 오늘 순서 공유</button><div class="tiny">오늘 순서는 하루에 한 번만 확정할 수 있습니다. 확정 후에는 다음 날까지 바뀌지 않습니다.</div></section>
-<section class="card"><h2>히스토리</h2><div id="history" class="history"></div></section>
+<section class="card"><h2>공유</h2><button class="secondary" id="shareBtn" type="button">📤 오늘 순서 공유</button><div class="tiny">오늘 순서는 모든 기기에서 공유됩니다. 한 기기에서 확정하면 다른 기기에서도 같은 값으로 잠깁니다.</div></section>
+<section class="card"><h2>히스토리</h2><div id="history" class="history"><div class="status">기록을 불러오는 중...</div></div></section>
 </div>
 <div class="toast" id="toast"></div>
 <script>
 (function(){
 'use strict';
-const KEY='kidsSleepRotation_v3';
-const OLD_KEY='kidsSleepRotation_v2';
-const NAMES=['하랑','세하','건우'];
-const DEFAULT={rotation:0,history:[]};
+const SUPABASE_URL='https://nkiislwyblnzpcdvcube.supabase.co';
+const SUPABASE_ANON='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5raWlzbHd5YmxuenBjZHZjdWJlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMDc5MTEsImV4cCI6MjEwNDc4MzkxMX0.yAOjP1NDKwTj3lBef9UfhNt4C-2rhibNUlIJY6ei0Rs';
+const API=SUPABASE_URL+'/rest/v1/sleep_rotation';
+const ROTATIONS=[['하랑','세하','건우'],['세하','건우','하랑'],['건우','하랑','세하']];
 const $=id=>document.getElementById(id);
 const el={today:$('todayText'),tv:$('tvName'),s1:$('seat1Name'),s2:$('seat2Name'),confirm:$('confirmBtn'),share:$('shareBtn'),history:$('history'),toast:$('toast')};
-const clone=o=>JSON.parse(JSON.stringify(o));
-function localKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
-function itemDay(item){if(item.localDate)return item.localDate;const d=new Date(item.date);return localKey(d)}
-function migrate(){try{const old=JSON.parse(localStorage.getItem(OLD_KEY));if(old&&Array.isArray(old.history)){const today=localKey(new Date());return{rotation:0,history:old.history.filter(x=>itemDay(x)!==today)}}}catch(e){}return clone(DEFAULT)}
-function load(){try{const x=JSON.parse(localStorage.getItem(KEY));return x&&Array.isArray(x.history)?x:migrate()}catch(e){return migrate()}}
-let state=load();
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
-function orderForRotation(r){return[NAMES[r%3],NAMES[(r+1)%3],NAMES[(r+2)%3]]}
-function todayRecord(){const k=localKey(new Date());return state.history.find(x=>itemDay(x)===k)||null}
-function displayOrder(){const rec=todayRecord();return rec?[rec.tv,rec.seat1,rec.seat2]:orderForRotation(state.rotation)}
+let records=[];let ready=false;let saving=false;
+function headers(extra={}){return Object.assign({'apikey':SUPABASE_ANON,'Authorization':'Bearer '+SUPABASE_ANON,'Content-Type':'application/json'},extra)}
+function dateKey(d=new Date()){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
 function dateText(d){const days=['일','월','화','수','목','금','토'];return `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일 ${days[d.getDay()]}요일`}
-function shortDate(item){const d=new Date(item.date),days=['일','월','화','수','목','금','토'];return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} (${days[d.getDay()]})`}
-function showToast(msg){el.toast.textContent=msg;el.toast.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.toast.classList.remove('show'),1600)}
+function shortDate(key){const [y,m,da]=key.split('-').map(Number),d=new Date(y,m-1,da),days=['일','월','화','수','목','금','토'];return `${y}.${String(m).padStart(2,'0')}.${String(da).padStart(2,'0')} (${days[d.getDay()]})`}
+function showToast(msg){el.toast.textContent=msg;el.toast.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>el.toast.classList.remove('show'),1800)}
+function todayRecord(){const t=dateKey();return records.find(r=>r.use_date===t)||null}
+function rotationIndexFromRecord(r){return ROTATIONS.findIndex(x=>x[0]===r.tv&&x[1]===r.seat1&&x[2]===r.seat2)}
+function pendingOrder(){const today=todayRecord();if(today)return[today.tv,today.seat1,today.seat2];if(!records.length)return ROTATIONS[0];const latest=records[0];const idx=rotationIndexFromRecord(latest);return ROTATIONS[((idx<0?0:idx)+1)%ROTATIONS.length]}
 function render(){
-  el.today.textContent=dateText(new Date());
-  const [tv,s1,s2]=displayOrder();el.tv.textContent=tv;el.s1.textContent=s1;el.s2.textContent=s2;
-  const locked=!!todayRecord();el.confirm.disabled=locked;el.confirm.textContent=locked?'오늘 순서 확정됨 ✓':'오늘 순서 확정하기';
-  el.history.innerHTML='';
-  if(!state.history.length){el.history.innerHTML='<div class="empty">아직 기록이 없어요. 오늘 순서를 확정하면 여기에 저장됩니다.</div>';return}
-  state.history.slice().reverse().forEach(item=>{const div=document.createElement('div');div.className='history-item';const d=document.createElement('div');d.className='history-date';d.textContent=shortDate(item);const t=document.createElement('div');t.className='history-text';t.textContent=`📺 TV: ${item.tv} · 🛏️ 자리 1순위: ${item.seat1} · 자리 2순위: ${item.seat2}`;div.append(d,t);el.history.appendChild(div)});
+ el.today.textContent=dateText(new Date());const [tv,s1,s2]=pendingOrder();el.tv.textContent=tv;el.s1.textContent=s1;el.s2.textContent=s2;
+ const locked=!!todayRecord();el.confirm.disabled=!ready||locked||saving;el.confirm.textContent=!ready?'연결 확인 중...':locked?'오늘 순서 확정됨 ✓':saving?'저장 중...':'오늘 순서 확정하기';
+ el.history.innerHTML='';if(!records.length){el.history.innerHTML='<div class="empty">아직 기록이 없어요. 오늘 순서를 확정하면 모든 기기에 함께 저장됩니다.</div>';return}
+ records.forEach(item=>{const div=document.createElement('div');div.className='history-item';const d=document.createElement('div');d.className='history-date';d.textContent=shortDate(item.use_date);const t=document.createElement('div');t.className='history-text';t.textContent=`📺 TV: ${item.tv} · 🛏️ 자리 1순위: ${item.seat1} · 자리 2순위: ${item.seat2}`;div.append(d,t);el.history.appendChild(div)});
 }
-el.confirm.addEventListener('click',function(){
-  if(todayRecord()){showToast('오늘 순서는 이미 확정됐어요');render();return}
-  const [tv,s1,s2]=orderForRotation(state.rotation);const now=new Date();
-  state.history.push({date:now.toISOString(),localDate:localKey(now),tv:tv,seat1:s1,seat2:s2,rotation:state.rotation});
-  state.rotation=(state.rotation+1)%3;save();render();showToast('오늘 순서를 확정했어요');
-});
-el.share.addEventListener('click',async function(){const [tv,s1,s2]=displayOrder();const text=`${dateText(new Date())}\n📺 TV: ${tv}\n🛏️ 자리 1순위: ${s1}\n🛏️ 자리 2순위: ${s2}`;try{if(navigator.share){await navigator.share({title:'오늘의 잠자리 순서',text:text})}else if(navigator.clipboard){await navigator.clipboard.writeText(text);showToast('공유 내용을 복사했어요')}}catch(e){}});
-save();render();
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
+async function loadRecords(){try{const res=await fetch(API+'?select=use_date,tv,seat1,seat2,confirmed_at&order=use_date.desc',{headers:headers({'Accept':'application/json'}),cache:'no-store'});if(!res.ok)throw new Error('load '+res.status);records=await res.json();ready=true;render()}catch(e){ready=false;el.confirm.disabled=true;el.confirm.textContent='연결 오류';el.history.innerHTML='<div class="empty">온라인 기록을 불러오지 못했어요. 잠시 후 다시 열어주세요.</div>'}}
+el.confirm.addEventListener('click',async function(){if(!ready||saving)return;if(todayRecord()){showToast('오늘 순서는 이미 확정됐어요');render();return}saving=true;render();const [tv,seat1,seat2]=pendingOrder();const body={use_date:dateKey(),tv,seat1,seat2};try{const res=await fetch(API,{method:'POST',headers:headers({'Prefer':'return=representation'}),body:JSON.stringify(body)});if(res.ok){showToast('오늘 순서를 확정했어요')}else if(res.status===409){showToast('다른 기기에서 이미 확정됐어요')}else{throw new Error('save '+res.status)}await loadRecords()}catch(e){showToast('저장에 실패했어요');await loadRecords()}finally{saving=false;render()}});
+el.share.addEventListener('click',async function(){const [tv,s1,s2]=pendingOrder();const text=`${dateText(new Date())}\n📺 TV: ${tv}\n🛏️ 자리 1순위: ${s1}\n🛏️ 자리 2순위: ${s2}`;try{if(navigator.share){await navigator.share({title:'오늘의 잠자리 순서',text})}else if(navigator.clipboard){await navigator.clipboard.writeText(text);showToast('공유 내용을 복사했어요')}}catch(e){}});
+render();loadRecords();setInterval(loadRecords,30000);
+if('serviceWorker'in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}))}
 })();
 </script>
 </body>
