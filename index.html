@@ -54,8 +54,24 @@ async function loadRecords(){try{const res=await fetch(API+'?select=use_date,tv,
 el.confirm.addEventListener('click',async function(){if(!ready||saving)return;if(todayRecord()){showToast('오늘 순서는 이미 확정됐어요');render();return}saving=true;render();const [tv,seat1,seat2]=pendingOrder();const body={use_date:dateKey(),tv,seat1,seat2};try{const res=await fetch(API,{method:'POST',headers:headers({'Prefer':'return=representation'}),body:JSON.stringify(body)});if(res.ok){showToast('오늘 순서를 확정했어요')}else if(res.status===409){showToast('다른 기기에서 이미 확정됐어요')}else{throw new Error('save '+res.status)}await loadRecords()}catch(e){showToast('저장에 실패했어요');await loadRecords()}finally{saving=false;render()}});
 el.share.addEventListener('click',async function(){const [tv,s1,s2]=pendingOrder();const text=`${dateText(new Date())}\n📺 TV: ${tv}\n🛏️ 자리 1순위: ${s1}\n🛏️ 자리 2순위: ${s2}`;try{if(navigator.share){await navigator.share({title:'오늘의 잠자리 순서',text})}else if(navigator.clipboard){await navigator.clipboard.writeText(text);showToast('공유 내용을 복사했어요')}}catch(e){}});
 render();loadRecords();setInterval(loadRecords,30000);
-if('serviceWorker' in navigator){navigator.serviceWorker.getRegistrations().then(regs=>Promise.all(regs.map(r=>r.unregister()))).catch(()=>{});}
-if('caches' in window){caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).catch(()=>{});}
+// Keep the app shell available offline without changing the online data flow.
+if('serviceWorker' in navigator){
+  window.addEventListener('load',async()=>{
+    try{
+      const registration=await navigator.serviceWorker.register('./service-worker.js',{
+        scope:'./',updateViaCache:'none'
+      });
+      const checkForUpdate=()=>registration.update().catch(e=>console.warn('PWA update check failed',e));
+      // Installed PWAs may stay open for days. Check again when returning online
+      // or to the foreground; never reload a page during a confirmation/save.
+      window.addEventListener('online',checkForUpdate);
+      document.addEventListener('visibilitychange',()=>{
+        if(document.visibilityState==='visible')checkForUpdate();
+      });
+      checkForUpdate();
+    }catch(e){console.warn('PWA registration failed',e)}
+  });
+}
 })();
 </script>
 </body>
